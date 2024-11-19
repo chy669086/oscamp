@@ -31,7 +31,7 @@ impl LabByteAllocator {
     fn next_loop(&mut self, size: usize) -> usize {
         let lop = size - self.cur_loop;
         if lop.is_power_of_two() {
-            return lop;
+            return self.cur_loop;
         }
         self.cur_loop += 1;
         self.cur_loop

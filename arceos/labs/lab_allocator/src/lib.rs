@@ -3,6 +3,7 @@
 #![no_std]
 #![allow(unused_variables)]
 
+
 use allocator::{BaseAllocator, ByteAllocator, AllocResult};
 use core::ptr::NonNull;
 use core::alloc::Layout;
@@ -28,12 +29,12 @@ impl LabByteAllocator {
     }
 
     fn next_loop(&mut self, size: usize) -> usize {
-        let lop = self.cur_loop - size;
+        let lop = size - self.cur_loop;
         if lop.is_power_of_two() {
             return lop;
         }
         self.cur_loop += 1;
-        lop + 1
+        self.cur_loop
     }
 }
 

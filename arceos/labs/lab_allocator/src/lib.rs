@@ -66,7 +66,7 @@ impl ByteAllocator for LabByteAllocator {
             self.even_start = self.pool_start + self.size / 2;
             self.odd_start = self.even_start;
         }
-        if lop == 2_00000 {
+        if lop >= 2_00000 {
             return Err(NoMemory);
         }
         let size = layout.size() - lop;
